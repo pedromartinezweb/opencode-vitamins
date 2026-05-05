@@ -1,0 +1,50 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "default_agent": "lead",
+  "model": "deepseek/deepseek-v4-pro",
+  "small_model": "lmstudio/qwen/qwen3.6-27b",
+  "instructions": [
+    "AGENTS.md",
+    "docs/agents/workflow.md"
+  ],
+  "permission": {
+    "edit": "ask",
+    "write": "ask",
+    "bash": "ask"
+  },
+  "command": {
+    "orchestrate": {
+      "description": "Plan, delegate, verify, and iterate a project task.",
+      "agent": "lead",
+      "model": "deepseek/deepseek-v4-pro",
+      "template": "Run the multi-agent workflow for this task: $ARGUMENTS\n\nKeep docs/tasks/current.md updated as the visible board. Use @planner to split the task, delegate backend work to @backend-coder, frontend work to @frontend-coder, and tests to @tester. Finish with @reviewer. If @reviewer or @tester finds issues, send concrete fixes to the responsible agent and repeat until acceptance criteria pass or a clear blocker exists."
+    },
+    "plan": {
+      "description": "Create a technical plan without changing files.",
+      "agent": "lead",
+      "model": "deepseek/deepseek-v4-pro",
+      "template": "Use @planner to create a technical plan for this task without changing files: $ARGUMENTS"
+    },
+    "verify": {
+      "description": "Review current project state and decide if it is correct.",
+      "agent": "lead",
+      "model": "deepseek/deepseek-v4-pro",
+      "template": "Use @tester and @reviewer to review current state against these criteria: $ARGUMENTS\n\nRun tests if available. If there are failures, identify the responsible agent and prepare the exact fix request."
+    }
+  },
+  "watcher": {
+    "ignore": [
+      "node_modules/**",
+      "dist/**",
+      "build/**",
+      ".git/**",
+      ".next/**",
+      "coverage/**"
+    ]
+  },
+  "compaction": {
+    "auto": true,
+    "prune": true,
+    "reserved": 12000
+  }
+}
