@@ -1,10 +1,22 @@
 # OpenCode Vitamins
 
-Reusable OpenCode multi-agent skeleton.
+OpenCode Vitamins is a reusable multi-agent skeleton for OpenCode projects.
 
-## Install In A New Project
+It gives any repository a clean agent setup for planning, implementation, testing, review, and autonomous iteration. The goal is simple: copy this skeleton into a project and start working with a coordinated team of specialized OpenCode agents.
 
-Run this from the root of any project:
+## What It Adds
+
+- A primary `lead` agent that coordinates the full workflow.
+- A GPT-5.5 `planner` agent for technical planning.
+- DeepSeek V4 Pro agents for review, backend code, and frontend code.
+- A local LM Studio/Qwen `tester` agent for low-cost validation.
+- Project-level OpenCode commands: `/plan`, `/orchestrate`, and `/verify`.
+- Shared engineering rules in `AGENTS.md`.
+- A concise workflow guide in `docs/agents/workflow.md`.
+
+## Install In An Existing Project
+
+Run this from the root of your project:
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/pedromartinezweb/opencode-vitamins/main/install.sh | bash
@@ -16,20 +28,35 @@ To overwrite existing skeleton files:
 curl -fsSL https://raw.githubusercontent.com/pedromartinezweb/opencode-vitamins/main/install.sh | FORCE=1 bash
 ```
 
-## Agents
+## Use As A Starting Template
 
-- `lead`: coordinator, DeepSeek V4 Pro.
-- `planner`: planning, GPT-5.5.
-- `reviewer`: review, DeepSeek V4 Pro.
-- `backend-coder`: backend generation, DeepSeek V4 Pro.
-- `frontend-coder`: frontend generation, DeepSeek V4 Pro.
-- `tester`: tests, LM Studio Qwen.
+Clone this repository and use it as the base for a new project:
 
-## Usage
+```bash
+git clone https://github.com/pedromartinezweb/opencode-vitamins.git my-project
+cd my-project
+rm -rf .git
+git init
+```
+
+Then start OpenCode:
 
 ```bash
 opencode
 ```
+
+## Agents
+
+| Agent | Role | Default model |
+| --- | --- | --- |
+| `lead` | Coordinates planning, delegation, verification, and iteration | `deepseek/deepseek-v4-pro` |
+| `planner` | Creates the technical plan without editing files | `openai/gpt-5.5` |
+| `reviewer` | Reviews quality, architecture, risks, and acceptance criteria | `deepseek/deepseek-v4-pro` |
+| `backend-coder` | Implements backend, domain, APIs, persistence, and services | `deepseek/deepseek-v4-pro` |
+| `frontend-coder` | Implements UI, components, client state, styles, and UX | `deepseek/deepseek-v4-pro` |
+| `tester` | Runs tests, writes focused tests, and reports evidence | `lmstudio/qwen/qwen3.6-27b` |
+
+## Commands
 
 Inside OpenCode:
 
@@ -39,7 +66,18 @@ Inside OpenCode:
 /verify describe the acceptance criteria here
 ```
 
-Autonomous terminal run:
+From the terminal:
+
+```bash
+opencode run \
+  --agent lead \
+  --command orchestrate \
+  --print-logs \
+  --log-level INFO \
+  "describe your task here"
+```
+
+For trusted disposable workspaces, you can allow autonomous edits and commands:
 
 ```bash
 opencode run \
@@ -51,4 +89,52 @@ opencode run \
   "describe your task here"
 ```
 
-Use `--dangerously-skip-permissions` only in a trusted project workspace.
+## Expected Model Setup
+
+The skeleton assumes these model IDs are available in OpenCode:
+
+```text
+openai/gpt-5.5
+deepseek/deepseek-v4-pro
+lmstudio/qwen/qwen3.6-27b
+```
+
+You can change them in:
+
+```text
+opencode.jsonc
+.opencode/agents/*.md
+```
+
+## Generated Files
+
+The installer creates or updates:
+
+```text
+AGENTS.md
+opencode.jsonc
+docs/agents/workflow.md
+.opencode/agents/backend-coder.md
+.opencode/agents/frontend-coder.md
+.opencode/agents/lead.md
+.opencode/agents/planner.md
+.opencode/agents/reviewer.md
+.opencode/agents/tester.md
+.opencode/.gitignore
+```
+
+It also appends common build artifacts to `.gitignore` when missing.
+
+## Workflow
+
+1. `lead` receives the task.
+2. `planner` creates the technical plan.
+3. `lead` delegates implementation to backend and frontend agents.
+4. `tester` runs checks and reports evidence.
+5. `reviewer` validates architecture, quality, and acceptance criteria.
+6. `lead` sends concrete fixes back to the responsible agent when needed.
+7. The loop continues until tests and review pass or a clear blocker is found.
+
+## License
+
+MIT
