@@ -1,6 +1,20 @@
-# PruebaOpencode
+# OpenCode Vitamins
 
-OpenCode multi-agent skeleton.
+Reusable OpenCode multi-agent skeleton.
+
+## Install In A New Project
+
+Run this from the root of any project:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/pedromartinezweb/opencode-vitamins/main/install.sh | bash
+```
+
+To overwrite existing skeleton files:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/pedromartinezweb/opencode-vitamins/main/install.sh | FORCE=1 bash
+```
 
 ## Agents
 
@@ -11,7 +25,7 @@ OpenCode multi-agent skeleton.
 - `frontend-coder`: frontend generation, DeepSeek V4 Pro.
 - `tester`: tests, LM Studio Qwen.
 
-## Run
+## Usage
 
 ```bash
 opencode
