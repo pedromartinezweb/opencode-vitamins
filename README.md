@@ -2,7 +2,20 @@
 
 OpenCode Vitamins is a reusable multi-agent skeleton for OpenCode projects.
 
-It gives any repository a clean agent setup for planning, implementation, testing, review, and autonomous iteration. The goal is simple: copy this skeleton into a project and start working with a coordinated team of specialized OpenCode agents.
+It gives any repository a clean agent setup for planning, implementation, testing, review, and autonomous iteration. Copy it into a project and start working with a coordinated team of specialized OpenCode agents.
+
+## Motivation
+
+Modern AI coding works better when responsibilities are explicit. A single agent can plan, code, test, and review, but quality improves when those jobs are separated.
+
+OpenCode Vitamins provides a small, practical structure:
+
+- GPT-5.5 focuses on planning.
+- DeepSeek V4 Pro coordinates, implements, and reviews.
+- LM Studio handles lower-cost local testing work.
+- The lead agent keeps the loop moving until the task is verified.
+
+The goal is not to create a heavy framework. It is a lightweight project skeleton that adds enough process to make autonomous coding more reliable while staying easy to copy, inspect, and modify.
 
 ## What It Adds
 
@@ -13,6 +26,7 @@ It gives any repository a clean agent setup for planning, implementation, testin
 - Project-level OpenCode commands: `/plan`, `/orchestrate`, and `/verify`.
 - Shared engineering rules in `AGENTS.md`.
 - A concise workflow guide in `docs/agents/workflow.md`.
+- A neutral example task in `docs/tasks/example-task.md`.
 
 ## Install In An Existing Project
 
@@ -89,12 +103,12 @@ opencode run \
   "describe your task here"
 ```
 
-## Example Task: Ambulance SaaS POC
+## Example Task
 
-This repository includes a complete example task in:
+This repository includes a neutral example task:
 
 ```text
-docs/tasks/ambulance-saas-poc.md
+docs/tasks/example-task.md
 ```
 
 Run it from the terminal:
@@ -106,7 +120,7 @@ opencode run \
   --dangerously-skip-permissions \
   --print-logs \
   --log-level INFO \
-  "$(cat docs/tasks/ambulance-saas-poc.md)"
+  "$(cat docs/tasks/example-task.md)"
 ```
 
 ## Expected Model Setup
@@ -134,6 +148,7 @@ The installer creates or updates:
 AGENTS.md
 opencode.jsonc
 docs/agents/workflow.md
+docs/tasks/example-task.md
 .opencode/agents/backend-coder.md
 .opencode/agents/frontend-coder.md
 .opencode/agents/lead.md

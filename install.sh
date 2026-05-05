@@ -44,8 +44,8 @@ copy_file "$ROOT/AGENTS.md" "AGENTS.md"
 copy_file "$ROOT/opencode.jsonc" "opencode.jsonc"
 copy_file "$ROOT/docs/agents/workflow.md" "docs/agents/workflow.md"
 
-if [[ -f "$ROOT/docs/tasks/ambulance-saas-poc.md" ]]; then
-  copy_file "$ROOT/docs/tasks/ambulance-saas-poc.md" "docs/tasks/ambulance-saas-poc.md"
+if [[ -f "$ROOT/docs/tasks/example-task.md" ]]; then
+  copy_file "$ROOT/docs/tasks/example-task.md" "docs/tasks/example-task.md"
 fi
 
 mkdir -p ".opencode/agents"
