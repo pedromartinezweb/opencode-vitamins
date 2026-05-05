@@ -89,6 +89,26 @@ opencode run \
   "describe your task here"
 ```
 
+## Example Task: Ambulance SaaS POC
+
+This repository includes a complete example task in:
+
+```text
+docs/tasks/ambulance-saas-poc.md
+```
+
+Run it from the terminal:
+
+```bash
+opencode run \
+  --agent lead \
+  --command orchestrate \
+  --dangerously-skip-permissions \
+  --print-logs \
+  --log-level INFO \
+  "$(cat docs/tasks/ambulance-saas-poc.md)"
+```
+
 ## Expected Model Setup
 
 The skeleton assumes these model IDs are available in OpenCode:

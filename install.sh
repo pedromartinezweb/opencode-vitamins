@@ -44,6 +44,10 @@ copy_file "$ROOT/AGENTS.md" "AGENTS.md"
 copy_file "$ROOT/opencode.jsonc" "opencode.jsonc"
 copy_file "$ROOT/docs/agents/workflow.md" "docs/agents/workflow.md"
 
+if [[ -f "$ROOT/docs/tasks/ambulance-saas-poc.md" ]]; then
+  copy_file "$ROOT/docs/tasks/ambulance-saas-poc.md" "docs/tasks/ambulance-saas-poc.md"
+fi
+
 mkdir -p ".opencode/agents"
 for agent in backend-coder frontend-coder lead planner reviewer tester; do
   copy_file "$ROOT/.opencode/agents/${agent}.md" ".opencode/agents/${agent}.md"
