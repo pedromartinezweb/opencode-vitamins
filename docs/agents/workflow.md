@@ -49,9 +49,9 @@ Verify current state:
 
 ## Visible Board
 
-Use `docs/tasks/current.md` to track long tasks or audit progress.
+Create a task board file only when the work is long enough to need persistent tracking.
 
-@lead should keep:
+@lead should keep, when useful:
 
 - Goal.
 - Acceptance criteria.

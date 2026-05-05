@@ -1,6 +1,6 @@
 # PruebaOpencode
 
-OpenCode multi-agent configuration for building an ambulance SaaS POC.
+OpenCode multi-agent skeleton.
 
 ## Agents
 
@@ -11,14 +11,6 @@ OpenCode multi-agent configuration for building an ambulance SaaS POC.
 - `frontend-coder`: frontend generation, DeepSeek V4 Pro.
 - `tester`: tests, LM Studio Qwen.
 
-## Main Task
-
-The product brief is in:
-
-```text
-docs/tasks/ambulance-saas-poc.md
-```
-
 ## Run
 
 ```bash
@@ -28,23 +20,21 @@ opencode
 Inside OpenCode:
 
 ```text
-/plan create the ambulance SaaS POC
-/orchestrate create the ambulance SaaS POC
+/plan describe your task here
+/orchestrate describe your task here
+/verify describe the acceptance criteria here
 ```
 
 Autonomous terminal run:
 
 ```bash
-mkdir -p logs
-
 opencode run \
   --agent lead \
   --command orchestrate \
   --dangerously-skip-permissions \
   --print-logs \
   --log-level INFO \
-  "$(cat docs/tasks/ambulance-saas-poc.md)" \
-  2>&1 | tee "logs/ambulance-saas-$(date +%Y%m%d-%H%M%S).log"
+  "describe your task here"
 ```
 
 Use `--dangerously-skip-permissions` only in a trusted project workspace.

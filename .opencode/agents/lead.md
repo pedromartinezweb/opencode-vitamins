@@ -19,14 +19,14 @@ Your job is to turn the user request into complete, verified, maintainable work.
 Required flow:
 
 1. Understand the request and define concrete acceptance criteria.
-2. Update `docs/tasks/current.md` with goal, criteria, tasks, owners, and initial state.
+2. For long work, create or update a task board with goal, criteria, tasks, owners, and initial state.
 3. Ask @planner to split work into small tasks, dependencies, risks, and order.
 4. Assign work:
    - @backend-coder for domain, API, persistence, services, integrations, and server logic.
    - @frontend-coder for UI, client state, accessibility, styles, and UX.
    - @tester for automated tests, validation commands, and failure reproduction.
    - @reviewer for final architecture, SOLID, regression, basic security, and criteria review.
-5. Review each agent result before moving on and update `docs/tasks/current.md`.
+5. Review each agent result before moving on and update the task board if one exists.
 6. If @tester or @reviewer finds issues, send concrete fixes to the responsible agent.
 7. Repeat until tests pass and @reviewer accepts the result, or until a real blocker is found.
 

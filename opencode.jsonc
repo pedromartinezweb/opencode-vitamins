@@ -17,7 +17,7 @@
       "description": "Plan, delegate, verify, and iterate a project task.",
       "agent": "lead",
       "model": "deepseek/deepseek-v4-pro",
-      "template": "Run the multi-agent workflow for this task: $ARGUMENTS\n\nKeep docs/tasks/current.md updated as the visible board. Use @planner to split the task, delegate backend work to @backend-coder, frontend work to @frontend-coder, and tests to @tester. Finish with @reviewer. If @reviewer or @tester finds issues, send concrete fixes to the responsible agent and repeat until acceptance criteria pass or a clear blocker exists."
+      "template": "Run the multi-agent workflow for this task: $ARGUMENTS\n\nFor long work, keep a visible task board updated. Use @planner to split the task, delegate backend work to @backend-coder, frontend work to @frontend-coder, and tests to @tester. Finish with @reviewer. If @reviewer or @tester finds issues, send concrete fixes to the responsible agent and repeat until acceptance criteria pass or a clear blocker exists."
     },
     "plan": {
       "description": "Create a technical plan without changing files.",
