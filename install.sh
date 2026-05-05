@@ -4,6 +4,7 @@ set -euo pipefail
 REPO="${OPENCODE_VITAMINS_REPO:-pedromartinezweb/opencode-vitamins}"
 REF="${OPENCODE_VITAMINS_REF:-main}"
 TMP_DIR="$(mktemp -d)"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 cleanup() {
   rm -rf "$TMP_DIR"
@@ -35,10 +36,13 @@ copy_file() {
 need curl
 need tar
 
-ARCHIVE_URL="https://github.com/${REPO}/archive/refs/heads/${REF}.tar.gz"
-
-curl -fsSL "$ARCHIVE_URL" | tar -xz -C "$TMP_DIR"
-ROOT="$(find "$TMP_DIR" -mindepth 1 -maxdepth 1 -type d | head -n 1)"
+if [[ -f "$SCRIPT_DIR/AGENTS.md" && -f "$SCRIPT_DIR/opencode.jsonc" ]]; then
+  ROOT="$SCRIPT_DIR"
+else
+  ARCHIVE_URL="https://github.com/${REPO}/archive/refs/heads/${REF}.tar.gz"
+  curl -fsSL "$ARCHIVE_URL" | tar -xz -C "$TMP_DIR"
+  ROOT="$(find "$TMP_DIR" -mindepth 1 -maxdepth 1 -type d | head -n 1)"
+fi
 
 copy_file "$ROOT/AGENTS.md" "AGENTS.md"
 copy_file "$ROOT/opencode.jsonc" "opencode.jsonc"

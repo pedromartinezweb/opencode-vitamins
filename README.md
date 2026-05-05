@@ -33,13 +33,13 @@ The goal is not to create a heavy framework. It is a lightweight project skeleto
 Run this from the root of your project:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/pedromartinezweb/opencode-vitamins/main/install.sh | bash
+tmp="$(mktemp -d)" && git clone --depth 1 https://github.com/pedromartinezweb/opencode-vitamins.git "$tmp/opencode-vitamins" && bash "$tmp/opencode-vitamins/install.sh" && rm -rf "$tmp"
 ```
 
 To overwrite existing skeleton files:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/pedromartinezweb/opencode-vitamins/main/install.sh | FORCE=1 bash
+tmp="$(mktemp -d)" && git clone --depth 1 https://github.com/pedromartinezweb/opencode-vitamins.git "$tmp/opencode-vitamins" && FORCE=1 bash "$tmp/opencode-vitamins/install.sh" && rm -rf "$tmp"
 ```
 
 ## Use As A Starting Template
